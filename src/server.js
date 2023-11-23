@@ -1,5 +1,9 @@
-const express = require("express")
-const { google } = require("googleapis")
+import dotenv from "dotenv"
+
+dotenv.config({})
+
+import express from "express"
+import { google } from "googleapis"
 
 const app = express()
 app.use(express.json())
@@ -25,6 +29,8 @@ app.get("/google", (req, res) => {
 })
 
 app.get("/google/redirect", (req, res) => {
+    const token = req.query.code
+
     res.send("It's working!")
 })
 

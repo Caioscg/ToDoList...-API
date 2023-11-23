@@ -7,15 +7,25 @@
   },
   "name": "todolist-api",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "nodemon": "^3.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Caioscg/ToDoList...-API.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Caioscg/ToDoList...-API/issues"
+  },
+  "homepage": "https://github.com/Caioscg/ToDoList...-API#readme",
+  "description": ""
 }
