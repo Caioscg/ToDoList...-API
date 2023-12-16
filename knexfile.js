@@ -1,4 +1,4 @@
-import path from "path"
+const path = require("path")
 
 //TODO arq criado a partir do comando 'npx knex init', mas modificado na linha 1 e 8 pra frente
 module.exports = {

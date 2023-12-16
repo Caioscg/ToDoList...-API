@@ -1,4 +1,5 @@
-import express from "express"
+require("express-async-errors")
+const express = require("express")
 
 const app = express()
 app.use(express.json())
