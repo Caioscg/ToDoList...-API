@@ -1,5 +1,8 @@
-exports.up = knex => knex.schema.createTable("users", table => {
-    
+exports.up = knex => knex.schema.createTable("schedule", table => {
+    table.increments("id")
+    table.integer("user_id").references("id").inTable("users")
+    table.integer("day")
+    table.integer("month")
 })
 
-exports.down = knex => knex.schema.dropTable("users")
+exports.down = knex => knex.schema.dropTable("schedule")
