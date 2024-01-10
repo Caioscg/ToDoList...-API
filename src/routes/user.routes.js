@@ -5,4 +5,4 @@ const UserController = new UsersControllers()
 
 const usersRoutes = Router()
 
-usersRoutes.post("/")
+usersRoutes.post("/", UserController.create)
