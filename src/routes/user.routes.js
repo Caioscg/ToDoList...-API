@@ -6,3 +6,5 @@ const UserController = new UsersControllers()
 const usersRoutes = Router()
 
 usersRoutes.post("/", UserController.create)
+
+module.exports = usersRoutes
