@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Caioscg/ToDoList...-API#readme",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "knex": "^3.1.0",
