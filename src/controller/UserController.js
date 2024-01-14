@@ -1,4 +1,4 @@
-const { hash, compare } = require("bcryptjs")
+const { hash } = require("bcryptjs")
 const AppError = require("../utils/AppError")
 const knex = require("../database/knex")
 
