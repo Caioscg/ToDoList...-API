@@ -31,7 +31,13 @@ class ScheduleController {
     }
 
     async update(req, res) {
+        const { tasks } = req.body
+        const user_id = req.params
 
+        const data = new Date()
+
+        const month = data.getMonth() + 1
+        const day = data.getDate()
     }
 }
 
