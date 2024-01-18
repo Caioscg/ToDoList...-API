@@ -5,6 +5,6 @@ const ScheduleController = new  SchedulesControllers()
 
 const scheduleRoutes = Router()
 
-scheduleRoutes.post("/", ScheduleController.create)
+scheduleRoutes.post("/:user_id", ScheduleController.create)
 
 module.exports = scheduleRoutes

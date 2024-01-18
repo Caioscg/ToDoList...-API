@@ -3,7 +3,7 @@ const knex = require("../database/knex")
 
 class ScheduleController {
     async create(req, res) {
-        const { tasks } = req.body
+        const { task } = req.body
         const user_id = req.params
 
         const data = new Date()
@@ -17,7 +17,7 @@ class ScheduleController {
             month
         })
 
-        const taskInsert = tasks.map(description => {
+        const taskInsert = task.map(description => {
             return {
                 schedule_id,
                 description,
