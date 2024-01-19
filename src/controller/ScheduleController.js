@@ -39,6 +39,16 @@ class ScheduleController {
         const month = data.getMonth() + 1
         const day = data.getDate()
     }
+
+    async show(req, res) {
+        const { id } = req.params
+
+        const tags = await knex("tags").where({ note_id: id }).orderBy("name")
+
+        return res.json({
+            tags
+        })
+    }
 }
 
 module.exports = ScheduleController
