@@ -4,19 +4,19 @@ const knex = require("../database/knex")
 class ScheduleController {
     async create(req, res) {
         const { task } = req.body
-        const user_id = req.params
+        const { user_id } = req.params  
 
         const data = new Date()
 
         const month = data.getMonth() + 1
         const day = data.getDate()
-
+        
         const [ schedule_id ] = await knex("schedule").insert({
             user_id,
             day,
             month
         })
-
+        
         const taskInsert = task.map(description => {
             return {
                 schedule_id,
@@ -25,6 +25,7 @@ class ScheduleController {
                 status: 0
             }
         })
+        console.log(taskInsert)
 
         await knex("task").insert(taskInsert)
 
