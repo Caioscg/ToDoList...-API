@@ -3,7 +3,7 @@ const knex = require("../database/knex")
 
 class ScheduleController {
     async create(req, res) {
-        const { task } = req.body
+        const { tasks } = req.body
         const { user_id } = req.params  
 
         const data = new Date()
@@ -17,7 +17,7 @@ class ScheduleController {
             month
         })
         
-        const taskInsert = task.map(description => {
+        const tasksInsert = tasks.map(description => {
             return {
                 schedule_id,
                 description,
@@ -25,10 +25,10 @@ class ScheduleController {
                 status: 0
             }
         })
-        console.log(taskInsert)
+        
+        await knex("task").insert(tasksInsert)
 
-        await knex("task").insert(taskInsert)
-
+        return res.status(201).json()
     }
 
     async update(req, res) {
@@ -44,10 +44,11 @@ class ScheduleController {
     async show(req, res) {
         const { id } = req.params
 
-        const tags = await knex("tags").where({ note_id: id }).orderBy("name")
+        const tasks = await knex("task").where({ schedule_id: id }).orderBy("name")
+        console.log(tasks)
 
         return res.json({
-            tags
+            tasks
         })
     }
 }
