@@ -43,9 +43,8 @@ class ScheduleController {
 
     async show(req, res) {
         const { id } = req.params
-
-        const tasks = await knex("task").where({ schedule_id: id }).orderBy("name")
-        console.log(tasks)
+        
+        const tasks = await knex("task").where({ schedule_id: id })
 
         return res.json({
             tasks
