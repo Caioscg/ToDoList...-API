@@ -33,12 +33,20 @@ class ScheduleController {
 
     async update(req, res) {
         const { tasks } = req.body
-        const user_id = req.params
+        const { user_id, id } = req.params
 
-        const data = new Date()
+        const tasksInsert = tasks.map(description => {
+            return {
+                schedule_id: id,
+                description,
+                user_id,
+                status: 0
+            }
+        })
 
-        const month = data.getMonth() + 1
-        const day = data.getDate()
+        await knex("task").insert(tasksInsert)
+
+        return res.status(201).json()
     }
 
     async show(req, res) {
