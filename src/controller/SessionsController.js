@@ -13,6 +13,20 @@ class SessionsController {
         if(!user) {
             throw new AppError("E-mail e/ou senha incorreta", 401)
         }
+
+        const passwordMatched = await compare(password, user.password)
+
+        if (!passwordMatched) {
+            throw new AppError("E-mail e/ou senha incorreta", 401)
+        }
+
+        const { secret, expiresIn } = authConfig.jwt
+        const token = sign({}, secret, {  // objeto vazio são configurações adicionais
+            subject: String(user.id),   // id do usuário usado pra criar o token
+            expiresIn
+        })
+
+        return res.json({ user, token })
     }
 }
 
