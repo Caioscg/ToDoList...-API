@@ -8,6 +8,20 @@ function ensureAuth(req, res, next) {
     if(!authHeader) {
         throw new AppError("JWT Token não informado", 401)
     }
+
+    const [, token] = authHeader.split(" ")
+
+    try {
+        
+        const { sub: user_id } = verify(token, authConfig.jwt.secret)  //* pega o conteudo 'sub' e nomeia de 'user_id'
+
+        req.user = {  //* insere o id dentro da req do user
+            id: Number(user_id)
+        }
+
+    } catch {
+        throw new AppError("JWT Token inválido", 401)
+    }
 }
 
 module.exports = ensureAuth
