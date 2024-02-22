@@ -25,7 +25,7 @@ class SessionsController {
             subject: String(user.id),   // id do usuário usado pra criar o token
             expiresIn
         })
-
+        
         return res.json({ user, token })
     }
 }

@@ -18,6 +18,8 @@ function ensureAuth(req, res, next) {
         req.user = {  //* insere o id dentro da req do user
             id: Number(user_id)
         }
+        
+        return next()
 
     } catch {
         throw new AppError("JWT Token inválido", 401)

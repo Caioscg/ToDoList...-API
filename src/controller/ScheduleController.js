@@ -4,7 +4,7 @@ const knex = require("../database/knex")
 class ScheduleController {
     async create(req, res) {
         const { tasks } = req.body
-        const user_id = req.user.id 
+        const user_id = req.user.id
 
         const data = new Date()
 
