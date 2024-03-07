@@ -11,6 +11,6 @@ scheduleRoutes.use(ensureAuth)  // middleware passado antes das rotas que precis
 
 scheduleRoutes.post("/", ScheduleController.create)
 scheduleRoutes.put("/:id", ScheduleController.update)
-scheduleRoutes.get("/:id", ScheduleController.show)
+scheduleRoutes.get("/", ScheduleController.show)
 
 module.exports = scheduleRoutes

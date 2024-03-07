@@ -16,7 +16,6 @@ class ScheduleController {
             day,
             month
         })
-        
         const tasksInsert = tasks.map(description => {
             return {
                 schedule_id,
@@ -51,9 +50,9 @@ class ScheduleController {
     }
 
     async show(req, res) {
-        const { id } = req.params
+        const user_id = req.user.id
         
-        const tasks = await knex("task").where({ schedule_id: id })
+        const tasks = await knex("task").where({ user_id })
 
         return res.json({
             tasks
