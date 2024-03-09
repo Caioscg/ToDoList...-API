@@ -1,7 +1,7 @@
 const AppError = require("../utils/AppError")
 const knex = require("../database/knex")
 
-class ScheduleController {
+class ScheduleController {   //TODO fazer um delete de toda uma schedule
     async create(req, res) {
         const { tasks } = req.body
         const user_id = req.user.id
@@ -51,8 +51,11 @@ class ScheduleController {
 
     async show(req, res) {
         const user_id = req.user.id
+        const { day, month } = req.params
         
-        const tasks = await knex("task").where({ user_id })
+        const [ schedule ] = await knex("schedule").where({ user_id, day, month })  // get the day and month schedule request
+
+        const tasks = await knex("task").where({ schedule_id: schedule.id })
 
         return res.json({
             tasks
