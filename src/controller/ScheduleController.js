@@ -5,11 +5,7 @@ class ScheduleController {   //TODO fazer um delete de toda uma schedule
     async create(req, res) {
         const { tasks } = req.body
         const user_id = req.user.id
-
-        const data = new Date()
-
-        const month = data.getMonth() + 1
-        const day = data.getDate()
+        const { day, month } = req.params
         
         const [ schedule_id ] = await knex("schedule").insert({
             user_id,
@@ -54,6 +50,8 @@ class ScheduleController {   //TODO fazer um delete de toda uma schedule
         const { day, month } = req.params
         
         const [ schedule ] = await knex("schedule").where({ user_id, day, month })  // get the day and month schedule request
+
+        if (!schedule) return res.json({}) // a day with no tasks yet
 
         const tasks = await knex("task").where({ schedule_id: schedule.id })
 

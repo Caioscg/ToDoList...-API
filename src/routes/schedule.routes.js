@@ -9,7 +9,7 @@ const scheduleRoutes = Router()
 
 scheduleRoutes.use(ensureAuth)  // middleware passado antes das rotas que precisam do token
 
-scheduleRoutes.post("/", ScheduleController.create)
+scheduleRoutes.post("/:day/:month", ScheduleController.create)
 scheduleRoutes.put("/:id", ScheduleController.update)
 scheduleRoutes.get("/:day/:month", ScheduleController.show)
 
