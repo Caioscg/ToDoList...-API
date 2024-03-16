@@ -3,25 +3,34 @@ const knex = require("../database/knex")
 
 class ScheduleController {   //TODO fazer um delete de toda uma schedule
     async create(req, res) {
-        const { tasks } = req.body
+        const { task } = req.body
         const user_id = req.user.id
         const { day, month } = req.params
         
-        const [ schedule_id ] = await knex("schedule").insert({
-            user_id,
-            day,
-            month
-        })
-        const tasksInsert = tasks.map(description => {
-            return {
+        const schedule = await knex("schedule").where({ user_id, day, month }) // see if schedule alrready exists
+
+        if (schedule.length == 0) {  // if not, it creates
+            
+            const [ schedule_id ] = await knex("schedule").insert({
+                user_id,
+                day,
+                month
+            })
+            await knex("task").insert({
                 schedule_id,
-                description,
+                description: task,
                 user_id,
                 status: 0
-            }
+            })
+            return res.status(201).json()
+        }
+
+        await knex("task").insert({
+            schedule_id: schedule.id,
+            description: task,
+            user_id,
+            status: 0
         })
-        
-        await knex("task").insert(tasksInsert)
 
         return res.status(201).json()
     }
