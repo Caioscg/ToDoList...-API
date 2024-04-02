@@ -9,6 +9,15 @@ class TaskController {
 
         return res.json()
     }
+    async update(req, res) {
+        const { id } = req.params
+        
+        const [ task ] = await knex("task").where({ id })
+
+        await knex("task").where({ id }).update({ status: !task.status })
+
+        return res.json()
+    }
 }
 
 module.exports = TaskController
