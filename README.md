@@ -15,6 +15,38 @@ Site Link: https://todolist-csg.netlify.app
 
 - This project is under the MIT license.
 
+<br>
+
+Clone the project
+
+```bash
+  git clone https://github.com/Caioscg/ToDoList...-API
+```
+
+Navigate to the project directory
+
+```bash
+  cd ToDoList
+```
+
+Install the dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+
+<br>
+
+## ⚙️ Front-end Repository
+
+https://github.com/Caioscg/ToDoList...
+
 ---
 
 Check my others projects!👋
